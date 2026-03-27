@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stockist Appointment Form — Energize Pharmaceuticals (P) Limited</title>
+  <meta name="description" content="Apply for stockist appointment with Energize Pharmaceuticals (P) Limited, SBU of Dakson Group. Submit your stockist application online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #1a6b4a;
+      --primary-dark: #0d4a32;
+      --primary-light: #e8f5ef;
+      --primary-mid: #2e8b62;
+      --accent: #f0b429;
+      --text: #1a2520;
+      --text-muted: #6b7a72;
+      --bg: #f4f8f5;
+      --card: #ffffff;
+      --border: #d1e3da;
+      --border-focus: #1a6b4a;
+      --error: #dc3545;
+      --error-light: #fff5f5;
+      --success: #1a6b4a;
+      --success-light: #e8f5ef;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 4px 24px rgba(26,107,74,0.10);
+      --shadow-lg: 0 8px 40px rgba(26,107,74,0.15);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-mid) 100%);
+      color: white;
+      padding: 20px 24px 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .site-header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -30px;
+      width: 180px; height: 180px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .logo-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 30px; padding: 6px 16px;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .logo-badge span { font-size: 16px; }
+    .header-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(18px, 4vw, 28px);
+      font-weight: 400; letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .header-sub {
+      font-size: 12px; color: rgba(255,255,255,0.75);
+      font-weight: 400; margin-bottom: 2px;
+    }
+    .header-contact {
+      font-size: 10.5px; color: rgba(255,255,255,0.6);
+      margin-top: 6px;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrapper {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .progress-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .step-label {
+      font-size: 13px; font-weight: 600; color: var(--primary);
+    }
+    .step-count {
+      font-size: 12px; color: var(--text-muted);
+    }
+    .progress-track {
+      width: 100%; height: 6px;
+      background: var(--primary-light);
+      border-radius: 3px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary-mid));
+      border-radius: 3px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step-dots {
+      display: flex; gap: 8px; margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .step-dot {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10.5px; color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .step-dot.active { color: var(--primary); font-weight: 600; }
+    .step-dot.done { color: var(--primary); }
+    .dot-circle {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--primary-light); color: var(--text-muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 700;
+      transition: var(--transition);
+      border: 1.5px solid var(--border);
+    }
+    .step-dot.active .dot-circle {
+      background: var(--primary); color: white; border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(26,107,74,0.2);
+    }
+    .step-dot.done .dot-circle {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+
+    /* FORM CARD */
+    .form-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      animation: slideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px; color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+    .section-desc {
+      font-size: 13px; color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* FORM ELEMENTS */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .form-row.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    @media (max-width: 600px) {
+      .form-row, .form-row.cols-3, .form-row.cols-4 { grid-template-columns: 1fr; }
+    }
+
+    label {
+      display: block;
+      font-size: 12.5px; font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    label .req { color: var(--error); margin-left: 2px; }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      background: #fafcfb;
+      transition: var(--transition);
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--border-focus);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(26,107,74,0.12);
+    }
+    input.invalid, textarea.invalid, select.invalid {
+      border-color: var(--error);
+      background: var(--error-light);
+    }
+    textarea { resize: vertical; min-height: 70px; }
+
+    /* CHECKBOX GROUP */
+    .checkbox-group {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-top: 4px;
+    }
+    .checkbox-item {
+      display: flex; align-items: center; gap: 7px;
+      cursor: pointer; padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: #fafcfb;
+      transition: var(--transition);
+      font-size: 13px;
+    }
+    .checkbox-item:hover { border-color: var(--primary); background: var(--primary-light); }
+    .checkbox-item input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .checkbox-item.checked {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* DYNAMIC TABLE */
+    .dynamic-table-wrapper {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .dynamic-table-header {
+      background: var(--primary-light);
+      padding: 8px 14px;
+      font-size: 12px; font-weight: 700;
+      color: var(--primary-dark);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .dynamic-row {
+      display: flex; flex-direction: column;
+      gap: 8px; padding: 14px;
+      border-top: 1px solid var(--border);
+      background: white;
+      position: relative;
+    }
+    .dynamic-row:nth-child(even) { background: #fafcfb; }
+    .dynamic-row-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 4px;
+    }
+    .row-number {
+      font-size: 11px; font-weight: 700; color: var(--primary);
+      background: var(--primary-light);
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; border: none;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
+      color: white;
+      box-shadow: 0 3px 12px rgba(26,107,74,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(26,107,74,0.4);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-secondary {
+      background: white; color: var(--primary);
+      border: 1.5px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--primary); background: var(--primary-light); }
+    .btn-danger {
+      background: transparent; color: var(--error);
+      border: 1.5px solid #fca5a5;
+      padding: 5px 10px; font-size: 12px;
+    }
+    .btn-danger:hover { background: #fff5f5; }
+    .btn-add {
+      background: var(--primary-light); color: var(--primary);
+      border: 1.5px dashed var(--primary);
+      padding: 8px 16px; font-size: 13px; width: 100%;
+      justify-content: center;
+    }
+    .btn-add:hover { background: #d4eee3; }
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
+      color: white;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 4px 16px rgba(26,107,74,0.35);
+    }
+    .btn-submit:hover:not(:disabled) {
+      box-shadow: 0 8px 24px rgba(26,107,74,0.45);
+      transform: translateY(-1px);
+    }
+    .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+    /* NAVIGATION FOOTER */
+    .nav-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* DIVIDER */
+    .field-divider {
+      height: 1px; background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* HINT TEXT */
+    .field-hint {
+      font-size: 11.5px; color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* SUB SECTION */
+    .sub-section {
+      background: var(--primary-light);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      border-left: 3px solid var(--primary);
+    }
+    .sub-section-title {
+      font-size: 12px; font-weight: 700; color: var(--primary-dark);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    /* DECLARATION */
+    .declaration-box {
+      background: #fffbeb;
+      border: 1.5px solid #f59e0b;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex; gap: 12px; align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .declaration-box input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--primary);
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .declaration-text { font-size: 12.5px; color: #78350f; line-height: 1.6; }
+
+    /* ERROR BANNER */
+    .error-banner {
+      background: #fff5f5;
+      border: 1.5px solid var(--error);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      color: var(--error);
+      font-size: 13.5px;
+      font-weight: 500;
+      display: flex; gap: 10px; align-items: flex-start;
+      animation: slideIn 0.3s ease;
+    }
+    .error-banner.hidden { display: none; }
+
+    /* SUCCESS SCREEN */
+    .success-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      animation: slideIn 0.4s ease;
+    }
+    .success-screen.visible { display: flex; }
+    .success-icon {
+      width: 90px; height: 90px;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 32px rgba(26,107,74,0.35);
+      animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes bounceIn {
+      from { transform: scale(0.4); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .success-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px; color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+    .success-message {
+      font-size: 15px; color: var(--text-muted);
+      max-width: 440px; line-height: 1.7;
+    }
+    .success-badge {
+      margin-top: 24px;
+      background: var(--primary-light);
+      border: 1.5px solid var(--primary);
+      border-radius: 20px; padding: 8px 20px;
+      font-size: 13px; font-weight: 600; color: var(--primary);
+    }
+
+    /* SPINNER */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.35);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* LOADING OVERLAY */
+    .loading-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(255,255,255,0.85);
+      z-index: 100;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loading-overlay.visible { display: flex; }
+    .loading-spinner-lg {
+      width: 54px; height: 54px;
+      border: 4px solid var(--primary-light);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    .loading-text {
+      font-size: 15px; font-weight: 600; color: var(--primary-dark);
+    }
+
+    /* AUTO-CALC highlight */
+    input[readonly] {
+      background: var(--primary-light) !important;
+      color: var(--primary-dark);
+      font-weight: 600;
+      cursor: default;
+    }
+
+    /* Note label */
+    .note-label {
+      font-size: 11.5px; color: var(--text-muted);
+      font-style: italic; margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-badge"><span>⚡</span> Energize Pharmaceuticals (P) Limited</div>
+    <h1 class="header-title">Stockist Appointment Application</h1>
+    <p class="header-sub">SBU of DAKSON GROUP — Official Online Application Portal</p>
+    <p class="header-contact">sales@energizepharma.com &nbsp;|&nbsp; +020-65-414-555 / 080-87-514-555 &nbsp;|&nbsp; www.energizepharma.com</p>
+  </div>
+</header>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner-lg"></div>
+  <p class="loading-text">Submitting your application…</p>
+</div>
+
+<div class="main-container">
+
+  <!-- ERROR BANNER -->
+  <div class="error-banner hidden" id="errorBanner">
+    ⚠️ <span id="errorText">An error occurred. Please try again.</span>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-wrapper" id="progressWrapper">
+    <div class="progress-header">
+      <span class="step-label" id="stepLabel">Step 1 of 6 — Basic Information</span>
+      <span class="step-count" id="stepCount">17% complete</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:17%;"></div>
+    </div>
+    <div class="step-dots">
+      <div class="step-dot active" id="dot-1"><div class="dot-circle">1</div>Basic Info</div>
+      <div class="step-dot" id="dot-2"><div class="dot-circle">2</div>Proprietors</div>
+      <div class="step-dot" id="dot-3"><div class="dot-circle">3</div>Licences</div>
+      <div class="step-dot" id="dot-4"><div class="dot-circle">4</div>Banking</div>
+      <div class="step-dot" id="dot-5"><div class="dot-circle">5</div>Distributorship</div>
+      <div class="step-dot" id="dot-6"><div class="dot-circle">6</div>Submit</div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 1: BASIC INFORMATION ================= -->
+  <div class="form-card" id="step-1">
+    <h2 class="section-title">Basic Information</h2>
+    <p class="section-desc">Please fill in your headquarters, contact, and address details.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="hq">Headquarters (HQ)</label>
+        <input type="text" id="hq" name="hq" placeholder="e.g. Mumbai" />
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nameAndAddress">Name &amp; Address <span class="req">*</span></label>
+      <textarea id="nameAndAddress" name="nameAndAddress" placeholder="Enter your full firm name and registered address" rows="3" required></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="telephoneNo">Telephone No.</label>
+        <input type="tel" id="telephoneNo" name="telephoneNo" placeholder="e.g. 020-12345678" />
+      </div>
+      <div class="form-group">
+        <label for="faxNo">Fax No.</label>
+        <input type="tel" id="faxNo" name="faxNo" placeholder="e.g. 020-12345679" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mobileNo">Mobile No. <span class="req">*</span></label>
+      <input type="tel" id="mobileNo" name="mobileNo" placeholder="e.g. +91-9876543210" required />
+    </div>
+
+    <div class="nav-footer">
+      <span></span>
+      <button class="btn btn-primary" onclick="nextStep(1)">Next — Proprietors &amp; Business →</button>
+    </div>
+  </div>
+
+  <!-- ================= STEP 2: PROPRIETORS & BUSINESS ================= -->
+  <div class="form-card" id="step-2" style="display:none;">
+    <h2 class="section-title">Proprietors &amp; Business Details</h2>
+    <p class="section-desc">Provide information about proprietors/partners/directors and your business type.</p>
+
+    <!-- Proprietors -->
+    <div class="dynamic-table-wrapper" id="proprietorWrapper">
+      <div class="dynamic-table-header">
+        <span>Proprietors / Partners / Directors</span>
+        <button class="btn btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="addProprietor()">+ Add</button>
+      </div>
+      <div id="proprietorRows">
+        <!-- rows injected by JS -->
+      </div>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="form-group">
+      <label for="dateOfIncorporation">Date Of Incorporation</label>
+      <input type="date" id="dateOfIncorporation" name="dateOfIncorporation" />
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="form-group">
+      <label>Type of Business</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item" id="chk-wholesale">
+          <input type="checkbox" id="businessWholesale" onchange="updateCheckboxStyle(this,'chk-wholesale')" /> Wholesale
+        </label>
+        <label class="checkbox-item" id="chk-retail">
+          <input type="checkbox" id="businessRetail" onchange="updateCheckboxStyle(this,'chk-retail')" /> Retail
+        </label>
+        <label class="checkbox-item" id="chk-both">
+          <input type="checkbox" id="businessBoth" onchange="updateCheckboxStyle(this,'chk-both')" /> Both
+        </label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="godownArea">Area of Godown (Sq. Ft.)</label>
+        <input type="text" id="godownArea" name="godownArea" placeholder="e.g. 2500" />
+      </div>
+      <div class="form-group">
+        <label for="distanceFromNearest">Distance from Nearest Stockist</label>
+        <input type="text" id="distanceFromNearest" name="distanceFromNearest" placeholder="e.g. 15 Kms" />
+      </div>
+    </div>
+
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep(2)">← Previous</button>
+      <button class="btn btn-primary" onclick="nextStep(2)">Next — Sister Companies &amp; Licences →</button>
+    </div>
+  </div>
+
+  <!-- ================= STEP 3: SISTER COMPANIES & LICENCES ================= -->
+  <div class="form-card" id="step-3" style="display:none;">
+    <h2 class="section-title">Sister Companies &amp; Licences</h2>
+    <p class="section-desc">List associate concerns and provide your licence registration numbers.</p>
+
+    <!-- Sister Companies -->
+    <div class="dynamic-table-wrapper" id="sisterWrapper">
+      <div class="dynamic-table-header">
+        <span>Sister Companies / Associate Concerns</span>
+        <button class="btn btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="addSisterCompany()">+ Add</button>
+      </div>
+      <div id="sisterRows">
+        <!-- rows injected by JS -->
+      </div>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="salesTaxNo">Central &amp; State Sales Tax No.</label>
+        <input type="text" id="salesTaxNo" name="salesTaxNo" placeholder="e.g. 27ABCDE1234F1Z5" />
+      </div>
+      <div class="form-group">
+        <label for="drugLicenceNo">Drug Licence No.</label>
+        <input type="text" id="drugLicenceNo" name="drugLicenceNo" placeholder="e.g. MH-PUN-B-12345" />
+      </div>
+    </div>
+
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep(3)">← Previous</button>
+      <button class="btn btn-primary" onclick="nextStep(3)">Next — Banking &amp; Financials →</button>
+    </div>
+  </div>
+
+  <!-- ================= STEP 4: BANKING & FINANCIALS ================= -->
+  <div class="form-card" id="step-4" style="display:none;">
+    <h2 class="section-title">Banking &amp; Financial Details</h2>
+    <p class="section-desc">Provide your banking relationships and financial summary.</p>
+
+    <div class="form-group">
+      <label for="bankersNameAddress">Bankers Name &amp; Address</label>
+      <textarea id="bankersNameAddress" name="bankersNameAddress" placeholder="Full bank name and branch address" rows="2"></textarea>
+    </div>
+
+    <div class="sub-section">
+      <div class="sub-section-title">Credit Facility (Rs. In Lacs)</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cashCredit">1) Cash Credit</label>
+          <input type="number" id="cashCredit" name="cashCredit" placeholder="0.00" step="0.01" oninput="calcCreditTotal()" />
+        </div>
+        <div class="form-group">
+          <label for="creditOther">2) Other</label>
+          <input type="number" id="creditOther" name="creditOther" placeholder="0.00" step="0.01" oninput="calcCreditTotal()" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="creditTotal">Total (Auto-Calculated)</label>
+          <input type="text" id="creditTotal" name="creditTotal" readonly placeholder="0.00" />
+        </div>
+        <div class="form-group">
+          <label for="givenToDays">Given To (No. of Days)</label>
+          <input type="text" id="givenToDays" name="givenToDays" placeholder="e.g. 30" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Given To (Type)</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item" id="chk-doctors">
+            <input type="checkbox" id="creditDoctors" onchange="updateCheckboxStyle(this,'chk-doctors')" /> Doctors
+          </label>
+          <label class="checkbox-item" id="chk-chemists">
+            <input type="checkbox" id="creditChemists" onchange="updateCheckboxStyle(this,'chk-chemists')" /> Chemists
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="sub-section">
+      <div class="sub-section-title">Financial Summary (Rs. In Lacs)</div>
+      <div class="form-row cols-4">
+        <div class="form-group">
+          <label for="annualTurnover">Total Annual Turnover</label>
+          <input type="text" id="annualTurnover" name="annualTurnover" placeholder="Lacs" />
+        </div>
+        <div class="form-group">
+          <label for="capitalEmployed">Capital Employed</label>
+          <input type="text" id="capitalEmployed" name="capitalEmployed" placeholder="Lacs" />
+        </div>
+        <div class="form-group">
+          <label for="fixedAssets">Fixed Assets</label>
+          <input type="text" id="fixedAssets" name="fixedAssets" placeholder="Lacs" />
+        </div>
+        <div class="form-group">
+          <label for="netWorth">Net Worth</label>
+          <input type="text" id="netWorth" name="netWorth" placeholder="Lacs" />
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep(4)">← Previous</button>
+      <button class="btn btn-primary" onclick="nextStep(4)">Next — Distributorship Details →</button>
+    </div>
+  </div>
+
+  <!-- ================= STEP 5: DISTRIBUTORSHIP ================= -->
+  <div class="form-card" id="step-5" style="display:none;">
+    <h2 class="section-title">Distributorship Details</h2>
+    <p class="section-desc">List companies whose products you currently distribute or have distributed.</p>
+
+    <div class="dynamic-table-wrapper" id="distWrapper">
+      <div class="dynamic-table-header">
+        <span>Current Distributorships (max 5)</span>
+        <button class="btn btn-add" style="width:auto;padding:4px 12px;font-size:11px;" onclick="addDistributorship()">+ Add</button>
+      </div>
+      <div id="distRows">
+        <!-- rows injected by JS -->
+      </div>
+    </div>
+
+    <div class="nav-footer">
+      <button class="btn btn-secondary" onclick="prevStep(5)">← Previous</button>
+      <button class="btn btn-primary" onclick="nextStep(5)">Next — Logistics &amp; Submit →</button>
+    </div>
+  </div>
+
+  <!-- ================= STEP 6: LOGISTICS & SUBMIT ================= -->
+  <div class="form-card" id="step-6" style="display:none;">
+    <h2 class="section-title">Logistics &amp; Final Submission</h2>
+    <p class="section-desc">Provide operational details, then review and submit your application.</p>
+
+    <div class="sub-section">
+      <div class="sub-section-title">Preferred Approved Transporters (Select Any Two)</div>
+      <div class="form-group">
+        <label for="transporter1">1. Transporter Name</label>
+        <input type="text" id="transporter1" name="transporter1" placeholder="e.g. VRL Logistics" />
+      </div>
+      <div class="form-group">
+        <label for="transporter2">2. Transporter Name</label>
+        <input type="text" id="transporter2" name="transporter2" placeholder="e.g. DTDC Courier" />
+      </div>
+      <div class="form-group">
+        <label for="transporter3">3. Transporter Name (Optional)</label>
+        <input type="text" id="transporter3" name="transporter3" placeholder="e.g. Blue Dart" />
+      </div>
+      <div class="note-label">* Select any two preferred transporters</div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="noOfSalesman">No. of Salesman</label>
+        <input type="number" id="noOfSalesman" name="noOfSalesman" placeholder="e.g. 5" min="0" />
+      </div>
+      <div class="form-group">
+        <label for="deliveryVehicles">Details of Delivery Vehicles</label>
+        <input type="text" id="deliveryVehicles" name="deliveryVehicles" placeholder="e.g. 2 Tempo, 1 Van" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="discontinuedDetails">Details of Stockistship Discontinued (with reasons)</label>
+      <textarea id="discontinuedDetails" name="discontinuedDetails" placeholder="Mention any discontinued stockistships and reasons, or write 'NIL'" rows="2"></textarea>
+    </div>
+
+    <div class="field-divider"></div>
+
+    <div class="declaration-box">
+      <input type="checkbox" id="declaration" required />
+      <p class="declaration-text">
+        <strong>Declaration:</strong> I/We declare that the above information is true to the best of my/our knowledge and I/We agree to abide by the terms and conditions of Energize Pharmaceuticals (P) Limited. I/We understand that providing false information may result in immediate rejection of this application.
+      </p>
+    </div>
+
+    <button class="btn btn-submit" id="submitBtn" onclick="submitForm()">
+      Submit Application
+    </button>
+
+    <div class="nav-footer" style="border-top:none;padding-top:12px;justify-content:flex-start;">
+      <button class="btn btn-secondary" onclick="prevStep(6)">← Previous</button>
+    </div>
+  </div>
+
+  <!-- ================= SUCCESS SCREEN ================= -->
+  <div class="form-card success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">Application Submitted!</h2>
+    <p class="success-message">
+      Your stockist application has been submitted successfully!
+      Our team will review your application and contact you shortly.
+      A copy has been sent to Energize Pharmaceuticals HR.
+    </p>
+    <div class="success-badge">⚡ Reference saved to our system</div>
+  </div>
+
+</div><!-- end main-container -->
+
+<script>
+  // ── STATE ──────────────────────────────────────────────────────────
+  let currentStep = 1;
+  const TOTAL_STEPS = 6;
+
+  const stepLabels = [
+    '', 'Basic Information', 'Proprietors & Business',
+    'Sister Companies & Licences', 'Banking & Financials',
+    'Distributorship Details', 'Logistics & Submit'
+  ];
+
+  let proprietorCount = 1;
+  let sisterCount = 1;
+  let distCount = 1;
+
+  // ── INIT ───────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    // Auto-fill today's date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').value = today;
+
+    // Initialize dynamic rows
+    addProprietor();
+    addSisterCompany();
+    addDistributorship();
+  });
+
+  // ── PROGRESS ───────────────────────────────────────────────────────
+  function updateProgress(step) {
+    const pct = Math.round((step / TOTAL_STEPS) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('stepLabel').textContent = `Step ${step} of ${TOTAL_STEPS} — ${stepLabels[step]}`;
+    document.getElementById('stepCount').textContent = pct + '% complete';
+
+    for (let i = 1; i <= TOTAL_STEPS; i++) {
+      const dot = document.getElementById(`dot-${i}`);
+      dot.classList.remove('active', 'done');
+      if (i === step) dot.classList.add('active');
+      else if (i < step) dot.classList.add('done');
+    }
+  }
+
+  // ── NAVIGATION ─────────────────────────────────────────────────────
+  function nextStep(from) {
+    if (!validateStep(from)) return;
+    hideError();
+    document.getElementById(`step-${from}`).style.display = 'none';
+    currentStep = from + 1;
+    document.getElementById(`step-${currentStep}`).style.display = 'block';
+    updateProgress(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function prevStep(from) {
+    hideError();
+    document.getElementById(`step-${from}`).style.display = 'none';
+    currentStep = from - 1;
+    document.getElementById(`step-${currentStep}`).style.display = 'block';
+    updateProgress(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── VALIDATION ─────────────────────────────────────────────────────
+  function validateStep(step) {
+    let valid = true;
+    if (step === 1) {
+      valid = requireField('nameAndAddress', 'Name & Address is required.') && valid;
+      valid = requireField('mobileNo', 'Mobile No. is required.') && valid;
+    }
+    if (step === 6) {
+      if (!document.getElementById('declaration').checked) {
+        showError('Please accept the declaration before submitting.');
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
+  function requireField(id, msg) {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.add('invalid');
+      el.addEventListener('input', () => el.classList.remove('invalid'), { once: true });
+      showError(msg);
+      el.focus();
+      return false;
+    }
+    el.classList.remove('invalid');
+    return true;
+  }
+
+  // ── ERROR / LOADING ────────────────────────────────────────────────
+  function showError(msg) {
+    const banner = document.getElementById('errorBanner');
+    document.getElementById('errorText').textContent = msg;
+    banner.classList.remove('hidden');
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function hideError() {
+    document.getElementById('errorBanner').classList.add('hidden');
+  }
+
+  function setLoading(state) {
+    const overlay = document.getElementById('loadingOverlay');
+    if (state) overlay.classList.add('visible');
+    else overlay.classList.remove('visible');
+  }
+
+  // ── CHECKBOX STYLE ────────────────────────────────────────────────
+  function updateCheckboxStyle(input, labelId) {
+    const label = document.getElementById(labelId);
+    if (input.checked) label.classList.add('checked');
+    else label.classList.remove('checked');
+  }
+
+  // ── CREDIT TOTAL AUTO-CALC ────────────────────────────────────────
+  function calcCreditTotal() {
+    const cc = parseFloat(document.getElementById('cashCredit').value) || 0;
+    const other = parseFloat(document.getElementById('creditOther').value) || 0;
+    document.getElementById('creditTotal').value = (cc + other).toFixed(2);
+  }
+
+  // ── DYNAMIC ROWS: PROPRIETORS ─────────────────────────────────────
+  function addProprietor() {
+    const container = document.getElementById('proprietorRows');
+    const existing = container.querySelectorAll('.dynamic-row').length;
+    if (existing >= 3) { showError('Maximum 3 proprietors allowed.'); return; }
+    const idx = existing;
+    const row = document.createElement('div');
+    row.className = 'dynamic-row';
+    row.id = `prop-row-${idx}`;
+    row.innerHTML = `
+      <div class="dynamic-row-header">
+        <div class="row-number">${idx + 1}</div>
+        ${idx > 0 ? `<button class="btn btn-danger" onclick="removeRow('prop-row-${idx}')">✕ Remove</button>` : ''}
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="prop_name_${idx}" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label>Residential Address</label>
+          <input type="text" id="prop_addr_${idx}" placeholder="Residential address" />
+        </div>
+      </div>
+    `;
+    container.appendChild(row);
+    proprietorCount = existing + 1;
+  }
+
+  // ── DYNAMIC ROWS: SISTER COMPANIES ───────────────────────────────
+  function addSisterCompany() {
+    const container = document.getElementById('sisterRows');
+    const existing = container.querySelectorAll('.dynamic-row').length;
+    if (existing >= 3) { showError('Maximum 3 sister companies allowed.'); return; }
+    const idx = existing;
+    const row = document.createElement('div');
+    row.className = 'dynamic-row';
+    row.id = `sister-row-${idx}`;
+    row.innerHTML = `
+      <div class="dynamic-row-header">
+        <div class="row-number">${idx + 1}</div>
+        ${idx > 0 ? `<button class="btn btn-danger" onclick="removeRow('sister-row-${idx}')">✕ Remove</button>` : ''}
+      </div>
+      <div class="form-row cols-3">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="sister_name_${idx}" placeholder="Sister company name" />
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" id="sister_addr_${idx}" placeholder="Address" />
+        </div>
+        <div class="form-group">
+          <label>Turnover (In Lac)</label>
+          <input type="text" id="sister_turnover_${idx}" placeholder="e.g. 25" />
+        </div>
+      </div>
+    `;
+    container.appendChild(row);
+    sisterCount = existing + 1;
+  }
+
+  // ── DYNAMIC ROWS: DISTRIBUTORSHIPS ───────────────────────────────
+  function addDistributorship() {
+    const container = document.getElementById('distRows');
+    const existing = container.querySelectorAll('.dynamic-row').length;
+    if (existing >= 5) { showError('Maximum 5 distributorships allowed.'); return; }
+    const idx = existing;
+    const row = document.createElement('div');
+    row.className = 'dynamic-row';
+    row.id = `dist-row-${idx}`;
+    row.innerHTML = `
+      <div class="dynamic-row-header">
+        <div class="row-number">${idx + 1}</div>
+        ${idx > 0 ? `<button class="btn btn-danger" onclick="removeRow('dist-row-${idx}')">✕ Remove</button>` : ''}
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Company Name</label>
+          <input type="text" id="dist_company_${idx}" placeholder="Company name" />
+        </div>
+        <div class="form-group">
+          <label>No. of Years</label>
+          <input type="text" id="dist_yrs_${idx}" placeholder="e.g. 5" />
+        </div>
+      </div>
+      <div class="form-row cols-3">
+        <div class="form-group">
+          <label>Annual Turnover (Rs. Lacs)</label>
+          <input type="text" id="dist_turnover_${idx}" placeholder="e.g. 50" />
+        </div>
+        <div class="form-group">
+          <label>Avg Stock Holding (Rs. Lacs)</label>
+          <input type="text" id="dist_stockhold_${idx}" placeholder="e.g. 10" />
+        </div>
+        <div class="form-group">
+          <label>Avg Stock Maintained (Days)</label>
+          <input type="text" id="dist_stockdays_${idx}" placeholder="e.g. 30" />
+        </div>
+      </div>
+      <div class="form-row cols-4">
+        <div class="form-group">
+          <label>Payment Policy Direct</label>
+          <input type="text" id="dist_paydir_${idx}" placeholder="e.g. Yes" />
+        </div>
+        <div class="form-group">
+          <label>Payment Bank</label>
+          <input type="text" id="dist_paybank_${idx}" placeholder="e.g. NEFT" />
+        </div>
+        <div class="form-group">
+          <label>No. of Days</label>
+          <input type="text" id="dist_days_${idx}" placeholder="e.g. 30" />
+        </div>
+        <div class="form-group">
+          <label>Avg Purchases/Month</label>
+          <input type="text" id="dist_avgpurch_${idx}" placeholder="e.g. 4" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Statement Date Sent to Company</label>
+        <input type="text" id="dist_stmtdate_${idx}" placeholder="e.g. 5th of every month" />
+      </div>
+    `;
+    container.appendChild(row);
+    distCount = existing + 1;
+  }
+
+  // ── REMOVE DYNAMIC ROW ────────────────────────────────────────────
+  function removeRow(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  // ── COLLECT FORM DATA ─────────────────────────────────────────────
+  function collectFormData() {
+    // Proprietors
+    const proprietors = [];
+    document.querySelectorAll('#proprietorRows .dynamic-row').forEach((row, i) => {
+      proprietors.push({
+        name: (document.getElementById(`prop_name_${i}`) || {}).value || '',
+        residentialAddress: (document.getElementById(`prop_addr_${i}`) || {}).value || '',
+      });
+    });
+
+    // Sister Companies
+    const sisterCompanies = [];
+    document.querySelectorAll('#sisterRows .dynamic-row').forEach((row, i) => {
+      sisterCompanies.push({
+        name: (document.getElementById(`sister_name_${i}`) || {}).value || '',
+        address: (document.getElementById(`sister_addr_${i}`) || {}).value || '',
+        turnover: (document.getElementById(`sister_turnover_${i}`) || {}).value || '',
+      });
+    });
+
+    // Distributorships
+    const distributorships = [];
+    document.querySelectorAll('#distRows .dynamic-row').forEach((row, i) => {
+      distributorships.push({
+        companyName: (document.getElementById(`dist_company_${i}`) || {}).value || '',
+        noOfYrs: (document.getElementById(`dist_yrs_${i}`) || {}).value || '',
+        annualTurnover: (document.getElementById(`dist_turnover_${i}`) || {}).value || '',
+        avgStockHolding: (document.getElementById(`dist_stockhold_${i}`) || {}).value || '',
+        avgStockMaintained: (document.getElementById(`dist_stockdays_${i}`) || {}).value || '',
+        paymentDirect: (document.getElementById(`dist_paydir_${i}`) || {}).value || '',
+        paymentBank: (document.getElementById(`dist_paybank_${i}`) || {}).value || '',
+        noOfDays: (document.getElementById(`dist_days_${i}`) || {}).value || '',
+        avgPurchasesPerMonth: (document.getElementById(`dist_avgpurch_${i}`) || {}).value || '',
+        statementDate: (document.getElementById(`dist_stmtdate_${i}`) || {}).value || '',
+      });
+    });
+
+    return {
+      hq: document.getElementById('hq').value,
+      date: document.getElementById('date').value,
+      nameAndAddress: document.getElementById('nameAndAddress').value,
+      telephoneNo: document.getElementById('telephoneNo').value,
+      faxNo: document.getElementById('faxNo').value,
+      mobileNo: document.getElementById('mobileNo').value,
+      proprietors,
+      dateOfIncorporation: document.getElementById('dateOfIncorporation').value,
+      businessType: {
+        wholesale: document.getElementById('businessWholesale').checked,
+        retail: document.getElementById('businessRetail').checked,
+        both: document.getElementById('businessBoth').checked,
+      },
+      godownArea: document.getElementById('godownArea').value,
+      distanceFromNearest: document.getElementById('distanceFromNearest').value,
+      sisterCompanies,
+      salesTaxNo: document.getElementById('salesTaxNo').value,
+      drugLicenceNo: document.getElementById('drugLicenceNo').value,
+      bankersNameAddress: document.getElementById('bankersNameAddress').value,
+      creditFacility: {
+        cashCredit: document.getElementById('cashCredit').value,
+        other: document.getElementById('creditOther').value,
+        total: document.getElementById('creditTotal').value,
+        givenToDays: document.getElementById('givenToDays').value,
+        doctors: document.getElementById('creditDoctors').checked,
+        chemists: document.getElementById('creditChemists').checked,
+      },
+      financials: {
+        annualTurnover: document.getElementById('annualTurnover').value,
+        capitalEmployed: document.getElementById('capitalEmployed').value,
+        fixedAssets: document.getElementById('fixedAssets').value,
+        netWorth: document.getElementById('netWorth').value,
+      },
+      distributorships,
+      transporters: [
+        document.getElementById('transporter1').value,
+        document.getElementById('transporter2').value,
+        document.getElementById('transporter3').value,
+      ].filter(t => t.trim() !== ''),
+      noOfSalesman: document.getElementById('noOfSalesman').value,
+      deliveryVehicles: document.getElementById('deliveryVehicles').value,
+      discontinuedDetails: document.getElementById('discontinuedDetails').value,
+    };
+  }
+
+  // ── SUBMIT FORM ───────────────────────────────────────────────────
+  async function submitForm() {
+    if (!validateStep(6)) return;
+    hideError();
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<div class="spinner"></div> Submitting…';
+    setLoading(true);
+
+    try {
+      const formData = collectFormData();
+
+      const response = await fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      setLoading(false);
+
+      if (result.success) {
+        // Hide all steps and progress
+        for (let i = 1; i <= TOTAL_STEPS; i++) {
+          const el = document.getElementById(`step-${i}`);
+          if (el) el.style.display = 'none';
+        }
+        document.getElementById('progressWrapper').style.display = 'none';
+        document.getElementById('successScreen').classList.add('visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error(result.error || 'Submission failed. Please try again.');
+      }
+    } catch (err) {
+      setLoading(false);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit Application';
+      showError(err.message || 'Network error. Please check your connection and try again.');
+    }
+  }
+</script>
+
+</body>
+</html>

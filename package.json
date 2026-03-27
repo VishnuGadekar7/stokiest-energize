@@ -1,0 +1,22 @@
+{
+  "name": "energize-stockist-form",
+  "version": "1.0.0",
+  "description": "Stockist Appointment Form for Energize Pharmaceuticals (P) Limited",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "npm install"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2",
+    "puppeteer": "^22.7.1",
+    "puppeteer-core": "^22.7.1",
+    "resend": "^3.2.0"
+  }
+}
