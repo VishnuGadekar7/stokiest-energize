@@ -30,7 +30,33 @@ const getLaunchOptions = () => {
       return { executablePath: chromePath, args: CHROME_ARGS, headless: true };
     }
   } catch (_) {
-    // puppeteer not available or no bundled Chrome, continue to next option
+    // puppeteer not available or no bundled Chrome, continue
+  }
+
+  // 2b. Search puppeteer's cache directory directly (fallback for Render)
+  try {
+    const fs = require("fs");
+    const path = require("path");
+    const os = require("os");
+    const cacheDir = path.join(os.homedir(), ".cache", "puppeteer", "chrome");
+    if (fs.existsSync(cacheDir)) {
+      const versions = fs.readdirSync(cacheDir);
+      for (const ver of versions) {
+        const candidates = [
+          path.join(cacheDir, ver, "chrome-linux64", "chrome"),
+          path.join(cacheDir, ver, "chrome-linux", "chrome"),
+          path.join(cacheDir, ver, "chrome"),
+        ];
+        for (const c of candidates) {
+          if (fs.existsSync(c)) {
+            console.log("[PDF] Found Chrome in puppeteer cache:", c);
+            return { executablePath: c, args: CHROME_ARGS, headless: true };
+          }
+        }
+      }
+    }
+  } catch (_) {
+    // cache search failed, continue
   }
 
   // 3. Auto-detect system Chrome on Windows
