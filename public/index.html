@@ -43,55 +43,6 @@
       line-height: 1.6;
     }
 
-    /* HEADER */
-    .site-header {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-mid) 100%);
-      color: white;
-      padding: 20px 24px 16px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .site-header::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 200px; height: 200px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 50%;
-    }
-    .site-header::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; left: -30px;
-      width: 180px; height: 180px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 50%;
-    }
-    .header-inner { position: relative; z-index: 1; }
-    .logo-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 30px; padding: 6px 16px;
-      font-size: 11px; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; margin-bottom: 10px;
-    }
-    .logo-badge span { font-size: 16px; }
-    .header-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(18px, 4vw, 28px);
-      font-weight: 400; letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-    .header-sub {
-      font-size: 12px; color: rgba(255,255,255,0.75);
-      font-weight: 400; margin-bottom: 2px;
-    }
-    .header-contact {
-      font-size: 10.5px; color: rgba(255,255,255,0.6);
-      margin-top: 6px;
-    }
 
     /* MAIN CONTAINER */
     .main-container {
@@ -505,15 +456,6 @@
 </head>
 <body>
 
-<!-- SITE HEADER -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo-badge"><span>⚡</span> Energize Pharmaceuticals (P) Limited</div>
-    <h1 class="header-title">Stockist Appointment Application</h1>
-    <p class="header-sub">SBU of DAKSON GROUP — Official Online Application Portal</p>
-    <p class="header-contact">sales@energizepharma.com &nbsp;|&nbsp; +020-65-414-555 / 080-87-514-555 &nbsp;|&nbsp; www.energizepharma.com</p>
-  </div>
-</header>
 
 <!-- LOADING OVERLAY -->
 <div class="loading-overlay" id="loadingOverlay">
