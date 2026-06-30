@@ -792,6 +792,9 @@
 
 <script>
   // ── STATE ──────────────────────────────────────────────────────────
+  // ── RENDER BACKEND URL (update this with your actual Render URL) ──
+  const API_BASE_URL = 'https://stokiest-energize.onrender.com';
+
   let currentStep = 1;
   const TOTAL_STEPS = 6;
 
@@ -1143,7 +1146,7 @@
     try {
       const formData = collectFormData();
 
-      const response = await fetch('/submit', {
+      const response = await fetch(`${API_BASE_URL}/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
