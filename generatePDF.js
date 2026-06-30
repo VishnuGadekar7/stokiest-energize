@@ -1,6 +1,6 @@
 require("dotenv").config();
-const fs = require("fs");
-const path = require("path");
+
+const puppeteer = require("puppeteer");
 
 const CHROME_ARGS = [
   "--no-sandbox",
@@ -10,81 +10,9 @@ const CHROME_ARGS = [
   "--no-first-run",
   "--no-zygote",
   "--disable-gpu",
+  "--single-process",
 ];
 
-// Async — must be awaited
-const getLaunchOptions = async () => {
-  // 1. Explicit path override (highest priority)
-  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
-    console.log("[PDF] Using explicit PUPPETEER_EXECUTABLE_PATH:", process.env.PUPPETEER_EXECUTABLE_PATH);
-    return {
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-      args: CHROME_ARGS,
-      headless: true,
-    };
-  }
-
-  // 2. Linux (Render.com) — use @sparticuz/chromium which self-contains Chromium
-  if (process.platform === "linux") {
-    try {
-      const chromium = require("@sparticuz/chromium");
-      chromium.setHeadlessMode = true;
-      const execPath = await chromium.executablePath();
-      console.log("[PDF] Using @sparticuz/chromium:", execPath);
-      return {
-        executablePath: execPath,
-        args: [...CHROME_ARGS, ...chromium.args],
-        headless: chromium.headless,
-        defaultViewport: chromium.defaultViewport,
-      };
-    } catch (err) {
-      console.error("[PDF] @sparticuz/chromium failed:", err.message);
-    }
-
-    // Linux fallback — system Chrome paths
-    const linuxPaths = [
-      "/usr/bin/google-chrome-stable",
-      "/usr/bin/google-chrome",
-      "/usr/bin/chromium-browser",
-      "/usr/bin/chromium",
-    ];
-    for (const p of linuxPaths) {
-      if (fs.existsSync(p)) {
-        console.log("[PDF] Using Linux system Chrome:", p);
-        return { executablePath: p, args: CHROME_ARGS, headless: true };
-      }
-    }
-
-    throw new Error("No Chrome found on Linux. Check @sparticuz/chromium install.");
-  }
-
-  // 3. Windows — auto-detect system Chrome
-  const windowsPaths = [
-    "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-    "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-    (process.env.LOCALAPPDATA || "") + "\\Google\\Chrome\\Application\\chrome.exe",
-  ];
-  for (const p of windowsPaths) {
-    if (fs.existsSync(p)) {
-      console.log("[PDF] Using Windows system Chrome:", p);
-      return { executablePath: p, args: CHROME_ARGS, headless: true };
-    }
-  }
-
-  // 4. macOS fallback
-  const macPath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-  if (fs.existsSync(macPath)) {
-    console.log("[PDF] Using macOS Chrome");
-    return { executablePath: macPath, args: CHROME_ARGS, headless: true };
-  }
-
-  throw new Error(
-    "No Chrome found. Set PUPPETEER_EXECUTABLE_PATH in your environment."
-  );
-};
-
-// Always use puppeteer-core — Chrome binary is supplied above
-const puppeteer = require("puppeteer-core");
 
 
 const tick = (checked) => (checked ? "✔" : "");
@@ -99,7 +27,10 @@ const row3 = (arr, field1, field2, field3) => {
 };
 
 const generatePDF = async (data) => {
-  const browser = await puppeteer.launch(await getLaunchOptions());
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: CHROME_ARGS,
+  });
 
   try {
     const page = await browser.newPage();
