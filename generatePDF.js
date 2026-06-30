@@ -53,7 +53,7 @@ const generatePDF = async (data) => {
 <table width="100%" cellpadding="0" cellspacing="0" style="border-bottom:2px solid #1a6b4a;margin-bottom:6px;">
   <tr>
     <td style="vertical-align:top;padding:6px 0;">
-      <div style="font-size:18px;font-weight:900;color:#1a3c2a;letter-spacing:1px;font-family:Helvetica,Arial,sans-serif;">ENERGIZE PHARMACEUTICALS (P) LIMITED</div>
+      <div style="font-size:18px;font-weight:900;color:#1a3c2a;letter-spacing:1px;font-family:Inter,sans-serif;">ENERGIZE PHARMACEUTICALS (P) LIMITED</div>
       <div style="font-size:10px;color:#555;font-weight:600;margin-top:1px;">SBU of DAKSON GROUP</div>
       <div style="font-size:8.5px;color:#333;margin-top:4px;line-height:1.5;">
         <b>Reg. Office:</b> 24, 2nd Floor, B-Building, City Vista Downtown, EON IT Park Road, Kharadi, PUNE-411014(MH) INDIA<br/>
@@ -74,7 +74,7 @@ const generatePDF = async (data) => {
 `;
 
     const PAGE1_HTML = `
-<div style="font-family:Helvetica,Arial,sans-serif;font-size:9px;padding:14px 18px;width:100%;box-sizing:border-box;">
+<div style="font-family:Inter,sans-serif;font-size:9px;padding:14px 18px;width:100%;box-sizing:border-box;">
   ${HEADER_HTML}
 
   <!-- Title Row -->
@@ -334,7 +334,7 @@ const generatePDF = async (data) => {
 `;
 
     const PAGE2_HTML = `
-<div style="font-family:Helvetica,Arial,sans-serif;font-size:9px;padding:14px 18px;width:100%;box-sizing:border-box;position:relative;">
+<div style="font-family:Inter,sans-serif;font-size:9px;padding:14px 18px;width:100%;box-sizing:border-box;position:relative;">
 
   <!-- Watermark -->
   <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-35deg);font-size:72px;font-weight:900;color:rgba(0,0,0,0.055);white-space:nowrap;pointer-events:none;z-index:0;letter-spacing:4px;">
@@ -563,7 +563,7 @@ const generatePDF = async (data) => {
 `;
 
     const FOOTER_HTML = `
-<div style="font-family:Helvetica,Arial,sans-serif;font-size:7.5px;color:#555;text-align:center;padding:6px 18px 10px;border-top:1px solid #ddd;margin-top:8px;">
+<div style="font-family:Inter,sans-serif;font-size:7.5px;color:#555;text-align:center;padding:6px 18px 10px;border-top:1px solid #ddd;margin-top:8px;">
   ENERGIZE PHARMACEUTICALS (P) LIMITED — SBU of DAKSON GROUP &nbsp;|&nbsp;
   sales@energizepharma.com &nbsp;|&nbsp; www.energizepharma.com &nbsp;|&nbsp;
   Tel: +020-65-414-555 / 080-87-514-555
@@ -575,9 +575,10 @@ const generatePDF = async (data) => {
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { margin: 0; padding: 0; background: white; }
+    body { margin: 0; padding: 0; background: white; font-family: Inter, sans-serif; }
     @page { size: A4 portrait; margin: 0; }
     .page-break { page-break-before: always; }
   </style>
