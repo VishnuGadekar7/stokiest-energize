@@ -7,6 +7,7 @@ const connectDB = require("./db");
 const Stockist = require("./Stockist");
 const { generatePDF } = require("./generatePDF");
 const { sendEmail } = require("./emailSender");
+const { ensureChrome } = require("./install-chrome");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -87,6 +88,18 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
-});
+async function startServer() {
+  try {
+    process.env.CHROME_PATH = await ensureChrome();
+  } catch (err) {
+    console.error("[Server] Chrome install failed:", err.message);
+  }
+
+  connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
+  });
+}
+
+startServer();

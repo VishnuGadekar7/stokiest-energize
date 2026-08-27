@@ -1,6 +1,4 @@
 require("dotenv").config();
-const { existsSync, readFileSync } = require("fs");
-const { join } = require("path");
 
 const puppeteer = require("puppeteer");
 
@@ -29,15 +27,12 @@ const row3 = (arr, field1, field2, field3) => {
 };
 
 const generatePDF = async (data) => {
-  const chromePathFile = join(__dirname, ".chrome-path");
-  const executablePath = existsSync(chromePathFile)
-    ? readFileSync(chromePathFile, "utf-8").trim()
-    : undefined;
+  const executablePath = process.env.CHROME_PATH || undefined;
 
   if (executablePath) {
     console.log("[PDF] Using Chrome at:", executablePath);
   } else {
-    console.warn("[PDF] .chrome-path not found — falling back to Puppeteer default");
+    console.warn("[PDF] CHROME_PATH not set — falling back to Puppeteer default");
   }
 
   const browser = await puppeteer.launch({

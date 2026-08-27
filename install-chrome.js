@@ -1,26 +1,24 @@
 const { install, resolveBuildId, Browser, BrowserPlatform } = require("@puppeteer/browsers");
-const { writeFileSync, existsSync, rmSync, readdirSync } = require("fs");
+const { existsSync, rmSync, readdirSync } = require("fs");
 const { join } = require("path");
 const os = require("os");
 
-async function main() {
+async function ensureChrome() {
   const cacheDir = join(__dirname, ".cache", "puppeteer");
   const chromeCacheDir = join(cacheDir, "chrome");
+  const platformDir = os.platform() === "win32" ? "chrome-win64" : "chrome-linux64";
+  const binaryName = os.platform() === "win32" ? "chrome.exe" : "chrome";
 
-  // Clean up any corrupted/partial download folders
+  // Check if a valid Chrome binary already exists
   if (existsSync(chromeCacheDir)) {
     for (const version of readdirSync(chromeCacheDir)) {
-      const binaryName = os.platform() === "win32" ? "chrome.exe" : "chrome";
-      const platformDir = os.platform() === "win32" ? "chrome-win64" : "chrome-linux64";
       const binary = join(chromeCacheDir, version, platformDir, binaryName);
-      if (!existsSync(binary)) {
+      if (existsSync(binary)) {
+        console.log(`[chrome] Already installed at: ${binary}`);
+        return binary;
+      } else {
         console.log(`[chrome] Removing broken folder: ${version}`);
         rmSync(join(chromeCacheDir, version), { recursive: true, force: true });
-      } else {
-        console.log(`[chrome] Already installed at: ${binary}`);
-        writeFileSync(join(__dirname, ".chrome-path"), binary, "utf-8");
-        console.log("[chrome] Path saved to .chrome-path");
-        return;
       }
     }
   }
@@ -32,22 +30,11 @@ async function main() {
       ? BrowserPlatform.MAC_ARM
       : BrowserPlatform.LINUX;
 
-  console.log("[chrome] Resolving latest Chrome build...");
   const buildId = await resolveBuildId(Browser.CHROME, platform, "latest");
   console.log(`[chrome] Installing Chrome ${buildId}...`);
-
-  const result = await install({
-    browser: Browser.CHROME,
-    buildId,
-    cacheDir,
-  });
-
-  console.log(`[chrome] Installed at: ${result.executablePath}`);
-  writeFileSync(join(__dirname, ".chrome-path"), result.executablePath, "utf-8");
-  console.log("[chrome] Path saved to .chrome-path");
+  const result = await install({ browser: Browser.CHROME, buildId, cacheDir });
+  console.log(`[chrome] Ready at: ${result.executablePath}`);
+  return result.executablePath;
 }
 
-main().catch((err) => {
-  console.error("[chrome] FATAL:", err.message);
-  process.exit(1);
-});
+module.exports = { ensureChrome };
