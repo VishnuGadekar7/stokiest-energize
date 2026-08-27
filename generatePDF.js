@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const puppeteer = require("puppeteer");
-const { ensureChrome } = require("./install-chrome");
 
 const CHROME_ARGS = [
   "--no-sandbox",
@@ -28,18 +27,14 @@ const row3 = (arr, field1, field2, field3) => {
 };
 
 const generatePDF = async (data) => {
-  if (!process.env.CHROME_PATH) {
-    console.log("[PDF] Chrome not ready yet, waiting for install to complete...");
-    process.env.CHROME_PATH = await ensureChrome();
-  }
-  const executablePath = process.env.CHROME_PATH;
-  console.log("[PDF] Using Chrome at:", executablePath);
+  const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || undefined;
+  console.log("[PDF] Chrome path:", executablePath || "(puppeteer default)");
 
   const browser = await puppeteer.launch({
     headless: 'new',
     args: CHROME_ARGS,
     timeout: 60000,
-    executablePath,
+    ...(executablePath ? { executablePath } : {}),
   });
 
   try {

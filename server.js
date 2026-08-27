@@ -7,7 +7,6 @@ const connectDB = require("./db");
 const Stockist = require("./Stockist");
 const { generatePDF } = require("./generatePDF");
 const { sendEmail } = require("./emailSender");
-const { ensureChrome } = require("./install-chrome");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -88,20 +87,8 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-async function startServer() {
-  connectDB();
+connectDB();
 
-  app.listen(PORT, () => {
-    console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
-  });
-
-  // Install Chrome in the background after server is already listening
-  try {
-    process.env.CHROME_PATH = await ensureChrome();
-    console.log("[Server] Chrome ready at:", process.env.CHROME_PATH);
-  } catch (err) {
-    console.error("[Server] Chrome install failed:", err.message);
-  }
-}
-
-startServer();
+app.listen(PORT, () => {
+  console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
+});
