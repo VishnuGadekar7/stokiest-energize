@@ -28,9 +28,9 @@ const row3 = (arr, field1, field2, field3) => {
 
 const generatePDF = async (data) => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: 'new',
     args: CHROME_ARGS,
-    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
+    timeout: 60000,
   });
 
   try {
@@ -597,7 +597,7 @@ const generatePDF = async (data) => {
 </html>
 `;
 
-    await page.setContent(fullHTML, { waitUntil: "networkidle0" });
+    await page.setContent(fullHTML, { waitUntil: 'networkidle2', timeout: 0 });
 
     const pdfBuffer = await page.pdf({
       format: "A4",
