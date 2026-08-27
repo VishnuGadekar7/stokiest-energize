@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "postinstall": "node install-chrome.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
