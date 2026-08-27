@@ -89,17 +89,19 @@ app.get("*", (req, res) => {
 });
 
 async function startServer() {
-  try {
-    process.env.CHROME_PATH = await ensureChrome();
-  } catch (err) {
-    console.error("[Server] Chrome install failed:", err.message);
-  }
-
   connectDB();
 
   app.listen(PORT, () => {
     console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
   });
+
+  // Install Chrome in the background after server is already listening
+  try {
+    process.env.CHROME_PATH = await ensureChrome();
+    console.log("[Server] Chrome ready at:", process.env.CHROME_PATH);
+  } catch (err) {
+    console.error("[Server] Chrome install failed:", err.message);
+  }
 }
 
 startServer();
