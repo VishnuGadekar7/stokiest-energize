@@ -122,7 +122,7 @@ git push -u origin main
 2. Connect your GitHub repository
 3. Configure service:
    - **Runtime**: Node
-   - **Build Command**: `npm install`
+   - **Build Command**: `npm install` (installs Puppeteer's managed Chrome)
    - **Start Command**: `npm start`
 
 ### 3. Set Environment Variables on Render
@@ -135,10 +135,7 @@ In the **Environment** tab, add:
 | `HR_EMAIL` | `hr@energizepharma.com` |
 | `MONGODB_URI` | `mongodb+srv://...` |
 | `PORT` | `3000` |
-| `IS_PRODUCTION` | `true` |
-| `PUPPETEER_EXECUTABLE_PATH` | `/usr/bin/google-chrome-stable` |
-
-> **Note:** Render.com free tier automatically provides Chrome for Puppeteer via `puppeteer-core`. The `IS_PRODUCTION=true` flag switches between `puppeteer` (local) and `puppeteer-core` (Render).
+| `PUPPETEER_EXECUTABLE_PATH` | Leave blank to use Puppeteer's managed Chrome |
 
 ### 4. Deploy
 
@@ -154,8 +151,7 @@ Click **Create Web Service** — Render will build and deploy. Your URL will be 
 | `HR_EMAIL` | HR email that receives applications | `hr@energizepharma.com` |
 | `MONGODB_URI` | MongoDB Atlas connection string | `mongodb+srv://...` |
 | `PORT` | Server port | `3000` |
-| `IS_PRODUCTION` | Use `puppeteer-core` instead of `puppeteer` | `true` or `false` |
-| `PUPPETEER_EXECUTABLE_PATH` | Path to Chrome on Render | `/usr/bin/google-chrome-stable` |
+| `PUPPETEER_EXECUTABLE_PATH` | Optional path to an externally installed Chrome | `/usr/bin/google-chrome-stable` |
 
 ---
 

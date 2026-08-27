@@ -30,6 +30,7 @@ const generatePDF = async (data) => {
   const browser = await puppeteer.launch({
     headless: true,
     args: CHROME_ARGS,
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
   });
 
   try {
