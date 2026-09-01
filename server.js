@@ -87,8 +87,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-connectDB();
-
 app.listen(PORT, () => {
   console.log(`[Server] Energize Stockist Form running on http://localhost:${PORT}`);
 });
