@@ -50,24 +50,31 @@ app.post("/submit", async (req, res) => {
       formData.financials = JSON.parse(formData.financials);
     }
 
-    // Save to MongoDB
+    // Save to MongoDB first — this is fast (~1s)
     const stockist = new Stockist(formData);
     await stockist.save();
     console.log("[Server] Saved to DB — ID:", stockist._id);
 
-    // Generate PDF
-    const pdfBuffer = await generatePDF(formData);
-    console.log("[Server] PDF generated");
-
-    // Send email with PDF attachment
-    await sendEmail(pdfBuffer, formData);
-    console.log("[Server] Email sent");
-
-    return res.status(200).json({
+    // Respond immediately so the user sees success without waiting for PDF/email
+    res.status(200).json({
       success: true,
       message: "Application submitted successfully",
       id: stockist._id,
     });
+
+    // Generate PDF + send email in the background (fire and forget)
+    generatePDF(formData)
+      .then((pdfBuffer) => {
+        console.log("[Server] PDF generated — ID:", stockist._id);
+        return sendEmail(pdfBuffer, formData);
+      })
+      .then(() => {
+        console.log("[Server] Email sent — ID:", stockist._id);
+      })
+      .catch((err) => {
+        console.error("[Server] Background PDF/email error — ID:", stockist._id, err.message);
+      });
+
   } catch (err) {
     console.error("[Server] Error in /submit:", err.message);
     return res.status(500).json({
