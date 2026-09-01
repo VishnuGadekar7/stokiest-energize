@@ -1,6 +1,5 @@
-require("dotenv").config();
-
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 
 const CHROME_ARGS = [
   "--no-sandbox",
@@ -25,14 +24,17 @@ const row3 = (arr, field1, field2, field3) => {
 };
 
 const generatePDF = async (data) => {
-  const executablePath = process.env.PUPPETEER_EXECUTABLE_PATH || undefined;
-  console.log("[PDF] Chrome path:", executablePath || "(puppeteer default)");
+  const executablePath =
+    process.env.PUPPETEER_EXECUTABLE_PATH ||
+    (await chromium.executablePath());
+
+  console.log("[PDF] Chrome path:", executablePath);
 
   const browser = await puppeteer.launch({
-    headless: 'new',
-    args: CHROME_ARGS,
+    executablePath,
+    headless: chromium.headless,
+    args: chromium.args,
     timeout: 60000,
-    ...(executablePath ? { executablePath } : {}),
   });
 
   try {
